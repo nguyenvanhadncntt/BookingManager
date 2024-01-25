@@ -59,17 +59,20 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-maven-${{ hashFiles('pom.xml') }}
 
+      - name: Start Docker Compose
+        run: docker-compose up -d
+
       - name: Install dependencies
         run: mvn install
 
       - name: Build Docker image
         run: mvn package docker:build
 
-      - name: Start Docker Compose
-        run: docker-compose up -d
-
       - name: Run unit tests
         run: mvn test
 
       - name: Run integration tests
         run: mvn verify -Pintegration-test
+
+      - name: Stop Docker Compose
+        run: docker-compose down
