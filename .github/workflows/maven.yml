@@ -73,6 +73,3 @@ jobs:
 
       - name: Run integration tests
         run: mvn verify -Pintegration-test
-
-      - name: Stop Docker Compose
-        run: docker-compose down
