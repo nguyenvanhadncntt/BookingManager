@@ -65,6 +65,9 @@ jobs:
       - name: Install dependencies
         run: mvn install
 
+      - name: Build Docker image
+        run: mvn package docker:build
+
       - name: Run unit tests
         run: mvn test
 
